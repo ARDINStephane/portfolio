@@ -1,0 +1,19 @@
+contact:
+  contact: Contact
+  forContact: Pour me contacter
+  phone: 00-00-00-00-00
+  email: stephane.ardin@gmail.com
+home:
+  home: Accueil
+  click: Cliquez ça va vous renverser !
+  danger: Danger
+  title: Portfolio
+save: Enregistrer
+navbar:
+  miniProjects: Mes mini projets
+  addProject: Ajouter un projet
+  listProjects: Liste des mini projets
+  search: Recherche
+flash:
+  success: Créé avec succès
+

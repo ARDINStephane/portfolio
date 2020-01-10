@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Portfolio{% endblock %}
+
+{% block body %}
+    {{ form_start(form) }}
+    {{ form_rest(form) }}
+    <button class="btn btn-primary">{{ button | default('Enregistrer') }}</button>
+    {{ form_end(form) }}
+{% endblock %}
+

@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}mini projet 1{% endblock %}
+
+{% block body %}
+
+    <div class="jumbotron text-center">
+        <h1 class="display-4">C'était un super projet !!</h1>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 mt-4">
+                <div class="card profile-card-5">
+                    <div class="card-img-block">
+                        <img class="card-img-top" src="{{ project.image }}" alt="Project img"/>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            {{ project.title }}
+                        </h5>
+                        <p class="card-text">
+                            {{ project.introduction }}
+                        </p>
+                        <div class="projects-links d-flex justify-content-between">
+                            <a href="{{ project.github}}" target="_blanc" class="btn btn-outline-dark">
+                                <i class="fab fagithub"></i>
+                                Github
+                            </a>
+                            <a href="{{ project.github }}/archive/master.zip" class="btn btn-outline-info">
+                                <i class="fab fa-download"></i>
+                                Telecharger
+                            </a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Portfolio{% endblock %}
+
+{% block body %}
+    <div class="jumbotron text-center">
+        <div class="container text-center border">
+            <div class="row my-5">
+                <div class="col">
+                    <h1>{{ 'home.click' | trans }}</h1>
+                </div>
+            </div>
+            <div class="row my-5">
+                <div class="col">
+                    <button type="button" class="btn btn-danger" id="renverse">{{ 'home.danger' | trans }}</button>
+                    <script>
+                        document.getElementById("renverse").onclick = function(){
+                            document.body.style['transition'] = 'transform 3s';
+                            document.body.style['transform'] = 'rotate(180deg)'
+                        }
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

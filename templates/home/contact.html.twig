@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'contact.contact' | trans }}{% endblock %}
+
+{% block body %}
+    <div class="container text-center border">
+        <div class="row my-5">
+            <div class="col">
+                <h1>{{ 'contact.contact' | trans }}</h1>
+                <p>{{ 'contact.forContact' | trans }} :</p>
+            </div>
+        </div>
+        <div class="row my-4">
+            <div class="col">
+                <p><i class="fas fa-phone-alt"></i> {{ 'contact.phone' | trans }} </p>
+            </div>
+            <div class="col">
+                <p><i class="fas fa-envelope"></i> {{ 'contact.email' | trans }} </p>
+            </div>
+        </div>
+    </div>
+{% endblock %}
