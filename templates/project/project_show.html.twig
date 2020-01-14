@@ -1,11 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}mini projet 1{% endblock %}
+{% block title %}{{ 'project.miniPoject' | trans }}{% endblock %}
 
 {% block body %}
-
     <div class="jumbotron text-center">
-        <h1 class="display-4">C'était un super projet !!</h1>
+        <h1 class="display-4">{{ 'project.cool' | trans }}</h1>
     </div>
     <div class="container">
         <div class="row">
@@ -22,20 +21,18 @@
                             {{ project.introduction }}
                         </p>
                         <div class="projects-links d-flex justify-content-between">
-                            <a href="{{ project.github}}" target="_blanc" class="btn btn-outline-dark">
-                                <i class="fab fagithub"></i>
-                                Github
+                            <a href="{{ project.github}}" target="_blanc" class="btn btn-outline-info">
+                                <i class="fab fa-github"></i>
+                                {{ 'project.github' | trans }}
                             </a>
                             <a href="{{ project.github }}/archive/master.zip" class="btn btn-outline-info">
-                                <i class="fab fa-download"></i>
-                                Telecharger
+                                <i class="fas fa-download"></i>
+                                {{ 'project.download' | trans }}
                             </a>
-
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
 {% endblock %}

@@ -6,24 +6,79 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href={{ path('home') }}><i class="fas fa-home"> {{ 'home.home' | trans }}</i><span class="sr-only">(current)</span></a>
+                <a class="nav-link"
+                   href={{ path('home') }}>
+                    <i class="fas fa-home">
+                        {{ 'home.home' | trans }}</i>
+                </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href={{ path('contact') }}><i class="far fa-id-card"></i> {{ 'contact.contact' | trans }}</a>
+                <a class="nav-link {% if app.request.attributes.get('_route') == "contact" %}active {% endif %}"
+                   href={{ path('contact') }}>
+                    <i class="far fa-id-card"></i>
+                    {{ 'contact.contact' | trans }}
+                </a>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link dropdown-toggle"
+                   href="#" id="navbarDropdown"
+                   role="button"
+                   data-toggle="dropdown"
+                   aria-haspopup="true"
+                   aria-expanded="false">
                     <i class="fas fa-tasks"></i> {{ 'navbar.miniProjects' | trans }}
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href={{ path('project.new') }}>{{ 'navbar.addProject' | trans }}</a>
-                    <a class="dropdown-item" href={{ path('project.list') }}>{{ 'navbar.listProjects' | trans }}</a>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <a class="dropdown-item {% if app.request.attributes.get('_route') == "project_new" %}active {% endif %}"
+                           href={{ path('project_new') }}>{{ 'navbar.addProject' | trans }}
+                        </a>
+                    {% endif %}
+                    <a class="dropdown-item {% if app.request.attributes.get('_route') == "project_list" %}active {% endif %}"
+                       href={{ path('project_list') }}>{{ 'navbar.listProjects' | trans }}
+                    </a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle {% if app.request.attributes.get('_route') == "set_locale" %}active {% endif %}"
+                   href="#" data-toggle="dropdown"
+                   aria-haspopup="true"
+                   aria-expanded="false">
+                    <span class="flag-icon flag-icon-us"> </span>
+                    <i class="fas fa-globe-europe"></i>
+                    {{ 'navbar.language' | trans }}
+                </a>
+                <div class="dropdown-menu" aria-labelledby="dropdown09">
+                    <a class="dropdown-item {% if app.request.locale == "fr" %}active {% endif %}"
+                       href="{{ path('set_locale', {
+                        'lastRoute': app.request.attributes.get('_route'),
+                        'routeParams': app.request.attributes.get('_route_params') | json_encode,
+                        'locale': 'fr'} ) }}">
+                        {{ 'navbar.french' | trans }}
+                    </a>
+                    <a class="dropdown-item {% if app.request.locale == "en" %}active {% endif %}"
+                       href="{{ path('set_locale', {
+                        'lastRoute': app.request.attributes.get('_route'),
+                        'routeParams': app.request.attributes.get('_route_params') | json_encode,
+                        'locale': 'en'} ) }}">{{ 'navbar.english' | trans }}</a>
                 </div>
             </li>
         </ul>
+
         <form class="form-inline my-2 my-lg-0">
+
             <input class="form-control mr-sm-2" type="search" placeholder="{{ 'navbar.search' | trans }}" aria-label="Search">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">{{ 'navbar.search' | trans }}</button>
         </form>
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+            <div class="navbar-nav nav-item">
+                <a class="nav-link" href={{ path('logout') }}>{{ 'security.logout' | trans }}</a>
+            </div>
+        {% else %}
+            <div class="navbar-nav nav-item">
+                <a class="nav-link" href={{ path('login') }}>{{ 'security.login' | trans }}</a>
+            </div>
+        {% endif %}
     </div>
 </nav>
+

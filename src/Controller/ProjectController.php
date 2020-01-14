@@ -13,6 +13,10 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ProjectController extends AbstractController
 {
+    const PROJECT_LIST = "projectList";
+    const EDIT = "edit";
+    const NEW = "new";
+
     /**
      * @var ProjectProvider
      */
@@ -32,13 +36,20 @@ class ProjectController extends AbstractController
 
     /**
      * Register new project in bdd
-     * @Route("/project/new", name="project.new")
+     * @Route("/admin/project/new", name="project_new")
+     * @Route("/admin/project/edit/{id}", name="project_edit")
+     * @param Project|null $project
      * @param Request $request
      * @return Response
      */
-    public function new(Request $request): Response
+    public function new(?Project $project, Request $request): Response
     {
-        $project = new Project();
+        if(empty($project)) {
+            $project = new Project();
+            $action = self::NEW;
+        } else {
+            $action = self::EDIT;
+        }
 
         $form = $this->createForm(ProjectType::class, $project);
         $form->handleRequest($request);
@@ -46,9 +57,9 @@ class ProjectController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($project);
             $entityManager->flush();
-            $this->addFlash('success', $this->translator->trans('flash.success'));
+            $this->addFlash('success', $this->translator->trans('flash.' . $action . '.success'));
 
-            return $this->redirectToRoute('project.list');
+            return $this->redirectToRoute('project_list');
         }
 
         return $this->render('project/project_new.html.twig', [
@@ -57,7 +68,7 @@ class ProjectController extends AbstractController
     }
 
     /**
-     * @Route("/project/list", name="project.list")
+     * @Route("/project/list", name="project_list")
      * @return Response
      */
     public function list():Response
@@ -69,7 +80,8 @@ class ProjectController extends AbstractController
     }
 
     /**
-     * @Route("/project/show/{id}", name="project.show")
+     * @Route("/project/show/{id}", name="project_show")
+     * @param Project $project
      * @return Response
      */
     public function show(Project $project):Response
@@ -77,5 +89,20 @@ class ProjectController extends AbstractController
         return $this->render('project/project_show.html.twig', [
             'project' => $project
         ]);
+    }
+
+    /**
+     * @Route("/admin/project/delete/{id}", name="project_delete")
+     * @param Project $project
+     * @return Response
+     */
+    public function delete(Project $project):Response
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+
+        $entityManager->remove($project);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('project_list');
     }
 }

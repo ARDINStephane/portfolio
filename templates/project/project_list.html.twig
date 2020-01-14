@@ -1,11 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}mini projet 1{% endblock %}
+{% block title %}{{ 'project.list.title' | trans }}{% endblock %}
 
 {% block body %}
-
     <div class="jumbotron text-center">
-        <h1 class="display-4">C'était super tous ces mini projets !!</h1>
+        <h1 class="display-4">{{ 'project.list.super' | trans }}</h1>
+        <div class="text-center mb-3">
+            {% if is_granted('ROLE_ADMIN') %}
+                <a class="btn btn-success" href={{ path('project_new') }}><i class="fas fa-plus"></i> {{ 'navbar.addProject' | trans }}</a>
+            {% endif %}
+        </div>
     </div>
     <div class="container">
         <div class="row">
@@ -23,17 +27,27 @@
                             {{ project.introduction }}
                         </p>
                         <div class="projects-links d-flex justify-content-between">
-                            <a href="#" target="_blanc" class="btn btn-outline-dark">
-                                <i class="fab fagithub"></i>
-                                {{ project.github}}
-                            </a>
-                            <a href="{{ path("project.show", {
-                                'id' : project.id
-                            }) }}" class="btn btn-outline-info">
-                                <i class="fab intocircle"></i>
-                                Ensavoir plus
-                            </a>
-
+                            {% if is_granted('ROLE_ADMIN') %}
+                                <a href="{{ path("project_edit", {
+                                    'id' : project.id
+                                }) }}" class="btn btn-outline-info">
+                                    <i class="fas fa-edit"></i> {{ 'project.edit' | trans }}
+                                </a>
+                                <a href="{{ path("project_delete", {
+                                    'id' : project.id
+                                }) }}" class="btn btn-outline-info">
+                                    <i class="fas fa-trash-alt"></i> {{ 'project.delete' | trans }}
+                                </a>
+                            {% else %}
+                                <a href="{{ project.github}}" target="_blanc" class="btn btn-outline-info">
+                                    <i class="fab fa-github"></i> {{ 'project.github' | trans }}
+                                </a>
+                                <a href="{{ path("project_show", {
+                                    'id' : project.id
+                                }) }}" class="btn btn-outline-info">
+                                    <i class="fas fa-info-circle"></i> {{ 'project.list.more' | trans }}
+                                </a>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
@@ -41,5 +55,4 @@
             {% endfor %}
         </div>
     </div>
-
 {% endblock %}
