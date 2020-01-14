@@ -1,0 +1,53 @@
+contact:
+  contact: Contact
+  forContact: To contact me
+  phone: 00-00-00-00-00
+  email: stephane.ardin@gmail.com
+home:
+  home: Home
+  click: Click it will knock you over!
+  danger: Danger
+  title: Portfolio
+save: Save
+navbar:
+  miniProjects: My mini projects
+  addProject: Add a project
+  listProjects: Mini projects list
+  search: Search
+  language: Language
+  french: French
+  english: English
+flash:
+  edit:
+    success: Edited successfully
+  new:
+    success: Created successfully
+security:
+  connection: Connection
+  login: Login
+  form:
+    userName: Username
+    password: Password
+  logout: logout
+project:
+  edit: Edit
+  delete: Delete
+  title: Title of my project
+  introduction: Introduction
+  description: Description
+  image: Image URL
+  github: Github URL
+  placeholder:
+    title: My title
+    introduction: My introduction
+    description: Description
+    image: Image link
+    github: Github link
+  list:
+    super: It was great all these mini projects !!
+    more: Find out more
+    title: Mini project list
+  miniProject: Mini project
+  cool: It was cool this project !!
+  download: Download
+

@@ -14,6 +14,40 @@ navbar:
   addProject: Ajouter un projet
   listProjects: Liste des mini projets
   search: Recherche
+  language: Langue
+  french: Français
+  english: Anglais
 flash:
-  success: Créé avec succès
+  edit:
+    success: Edité avec succès
+  new:
+    success: Créé avec succès
+security:
+  connection: Connexion
+  login: Se connecter
+  form:
+    userName: Nom d'utilisateur
+    password: Mot de passe
+  logout: Se déconnecter
+project:
+  edit: Editer
+  delete: Supprimer
+  title: Titre de mon projet
+  introduction: Introduction
+  description: Description
+  image: URL de l'image
+  github: URL github
+  placeholder:
+    title: Mon titre
+    introduction: Mon introduction
+    description: Description
+    image: Lien de l'image
+    github: Lien github
+  list:
+    super: C'était super tous ces mini projets !!
+    more: En savoir plus
+    title: Liste mini projet
+  miniProject: Mini projet
+  cool: C'était cool ce projet !!
+  download: Telecharger
 

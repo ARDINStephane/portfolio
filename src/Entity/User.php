@@ -3,11 +3,12 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\AdminRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  */
-class Admin
+class User implements UserInterface
 {
     /**
      * @ORM\Id()
@@ -30,6 +31,11 @@ class Admin
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $createdAt;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $roles;
 
     public function getId(): ?int
     {
@@ -71,4 +77,36 @@ class Admin
 
         return $this;
     }
+
+    /**
+     * @param array $roles
+     * @return User
+     */
+    public function setRoles(array $roles): User
+    {
+        $this->roles = json_encode($roles);
+
+        return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getRoles()
+    {
+        return json_decode($this->roles);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getSalt()
+    {
+        return null;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function eraseCredentials(){}
 }

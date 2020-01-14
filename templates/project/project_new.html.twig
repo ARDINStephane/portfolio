@@ -3,9 +3,11 @@
 {% block title %}Portfolio{% endblock %}
 
 {% block body %}
-    {{ form_start(form) }}
-    {{ form_rest(form) }}
-    <button class="btn btn-primary">{{ button | default('Enregistrer') }}</button>
-    {{ form_end(form) }}
+    <div class="container">
+        {{ form_start(form) }}
+        {{ form_rest(form) }}
+        <button class="btn btn-primary">{{ button | default('Enregistrer') }}</button>
+        {{ form_end(form) }}
+    </div>
 {% endblock %}
 
