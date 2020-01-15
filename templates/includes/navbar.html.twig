@@ -1,25 +1,26 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-dark custom-bg-bleue">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link"
+            <li class="nav-item mx-1">
+                <a class="nav-link  custom-home"
                    href={{ path('home') }}>
                     <i class="fas fa-home">
-                        {{ 'home.home' | trans }}</i>
+                        {{ 'home.home' | trans }}
+                    </i>
                 </a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item mx-1">
                 <a class="nav-link {% if app.request.attributes.get('_route') == "contact" %}active {% endif %}"
                    href={{ path('contact') }}>
                     <i class="far fa-id-card"></i>
                     {{ 'contact.contact' | trans }}
                 </a>
             </li>
-            <li class="nav-item dropdown">
+            <li class="nav-item dropdown mx-1">
                 <a class="nav-link dropdown-toggle"
                    href="#" id="navbarDropdown"
                    role="button"
@@ -39,7 +40,7 @@
                     </a>
                 </div>
             </li>
-            <li class="nav-item dropdown">
+            <li class="nav-item dropdown mx-1">
                 <a class="nav-link dropdown-toggle {% if app.request.attributes.get('_route') == "set_locale" %}active {% endif %}"
                    href="#" data-toggle="dropdown"
                    aria-haspopup="true"
@@ -64,18 +65,21 @@
                 </div>
             </li>
         </ul>
-
         <form class="form-inline my-2 my-lg-0">
-
-            <input class="form-control mr-sm-2" type="search" placeholder="{{ 'navbar.search' | trans }}" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">{{ 'navbar.search' | trans }}</button>
+            <div class="input-group md-form form-sm form-2 pl-0">
+                <input class="form-control my-0 py-3 lime-border" type="text" placeholder="{{ 'navbar.search' | trans }}" aria-label="Search">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary perso-search" type="submit"><i class="fas fa-search" aria-hidden="true"></i></button>
+                </div>
+            </div>
         </form>
+
         {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-            <div class="navbar-nav nav-item">
+            <div class="navbar-nav nav-item mx-2">
                 <a class="nav-link" href={{ path('logout') }}>{{ 'security.logout' | trans }}</a>
             </div>
         {% else %}
-            <div class="navbar-nav nav-item">
+            <div class="navbar-nav nav-item mx-5">
                 <a class="nav-link" href={{ path('login') }}>{{ 'security.login' | trans }}</a>
             </div>
         {% endif %}

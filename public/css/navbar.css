@@ -1,0 +1,15 @@
+.custom-bg-bleue{
+    background: rgb(35,47,62);
+    font-size: 18px;
+}
+.custom-home{
+    color: rgb(70,159,193) !important;
+}
+nav a:hover{
+    color: rgb(244,151,39) !important;
+}
+
+.perso-search{
+    background: rgb(244,151,39);
+    color: rgb(35,47,62);
+}
