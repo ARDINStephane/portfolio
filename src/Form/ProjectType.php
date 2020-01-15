@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Project;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
@@ -45,7 +46,8 @@ class ProjectType extends AbstractType
                     'placeholder' => $this->translator->trans('project.placeholder.description')
                 ]
             ])
-            ->add('image', UrlType::class, [
+            ->add('imageFile', FileType::class, [
+                'required' => false,
                 'label' => $this->translator->trans('project.image'),
                 'attr' => [
                     'placeholder' => $this->translator->trans('project.placeholder.image')
