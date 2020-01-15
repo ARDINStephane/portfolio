@@ -5,12 +5,12 @@
 {% block body %}
     <div class="jumbotron text-center">
         <div class="container text-center border">
-            <div class="row my-5">
+            <div class="row">
                 <div class="col">
                     <h1>{{ 'home.click' | trans }}</h1>
                 </div>
             </div>
-            <div class="row my-5">
+            <div class="row">
                 <div class="col">
                     <button type="button" class="btn btn-danger" id="renverse">{{ 'home.danger' | trans }}</button>
                     <script>
@@ -23,5 +23,6 @@
             </div>
         </div>
     </div>
+    {% include 'includes/carousel.html.twig' %}
 
 {% endblock %}
