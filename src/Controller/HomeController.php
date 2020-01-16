@@ -25,10 +25,8 @@ class HomeController extends AbstractController
      */
     public function index():Response
     {
-        $list = $this->projectProvider->provideAll();
-        return $this->render('home/home.html.twig', [
-            'projectList' => $list
-        ]);    }
+        return $this->render('home/home.html.twig');
+    }
     /**
      * @Route("/contact", name="contact")
      */

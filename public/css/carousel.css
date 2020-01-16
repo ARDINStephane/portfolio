@@ -1,3 +1,7 @@
 .perso-degraded-backgroung{
     background: linear-gradient(rgb(35,47,62),white);
 }
+
+.custom-title-sun{
+    font-family: 'Courgette', cursive;
+}
