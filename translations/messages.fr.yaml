@@ -5,9 +5,10 @@ contact:
   email: stephane.ardin@gmail.com
 home:
   home: Accueil
-  click: Cliquez ça va vous renverser !
+  click: Clique ça va te renverser !
   danger: Danger
   title: Portfolio
+  sun: Pour ensoleiller ta journée
 save: Enregistrer
 navbar:
   miniProjects: Mes mini projets
