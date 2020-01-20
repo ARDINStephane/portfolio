@@ -1,9 +1,16 @@
 contact:
   contact: Contact
-  forContact: To contact me
+  forContact: Contact me
   phone: 00-00-00-00-00
   email: stephane.ardin@gmail.com
   info: My personal informations
+  form:
+    firstname: Firstname
+    lastname: Lastname
+    phone: Phone
+    email: Email
+    message: Message
+    send: Send
 home:
   home: Home
   click: Click it will knock you over!
