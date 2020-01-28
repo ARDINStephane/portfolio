@@ -1,8 +1,16 @@
 contact:
   contact: Contact
-  forContact: Pour me contacter
+  forContact: Me contacter
   phone: 00-00-00-00-00
   email: stephane.ardin@gmail.com
+  info: Mes informations personnelles
+  form:
+    firstname: Prénom
+    lastname: Nom
+    phone: Téléphone
+    email: Mail
+    message: Message
+    send: Envoyer
 home:
   home: Accueil
   click: Clique ça va te renverser !
@@ -51,4 +59,5 @@ project:
   miniProject: Mini projet
   cool: C'était cool ce projet !!
   download: Telecharger
+modal.close: Fermer
 

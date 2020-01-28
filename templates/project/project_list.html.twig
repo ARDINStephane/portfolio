@@ -14,10 +14,11 @@
     <div class="container">
         <div class="row">
             {% for project in  projectList %}
+                {% dump(project.id) %}
             <div class="col-md-4 mt-4">
                 <div class="card profile-card-5">
                     <div class="card-img-block">
-                        <img class="card-img-top" src="{{ vich_uploader_asset(project, 'imageFile') }}" alt="project-img" style="width: 100%; height:auto;">
+                        <img class="card-img-top" src="{{ vich_uploader_asset(project, 'imageFile') }}" alt="project-img" style="width: 100%;">
                     </div>
                     <div class="card-body">
                         <h5 class="card-title">
@@ -42,16 +43,16 @@
                                 <a href="{{ project.github}}" target="_blanc" class="btn btn-outline-info">
                                     <i class="fab fa-github"></i> {{ 'project.github' | trans }}
                                 </a>
-                                <a href="{{ path("project_show", {
-                                    'id' : project.id
-                                }) }}" class="btn btn-outline-info">
-                                    <i class="fas fa-info-circle"></i> {{ 'project.list.more' | trans }}
-                                </a>
+                                <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#{{project.title}}">
+                                <i class="fas fa-info-circle"></i>  {{ 'project.list.more' | trans }}
+                                </button>
                             {% endif %}
                         </div>
                     </div>
                 </div>
             </div>
+                {% include 'includes/project_modal.html.twig' %}
             {% endfor %}
         </div>
     </div>

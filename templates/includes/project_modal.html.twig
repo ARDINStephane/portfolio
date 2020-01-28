@@ -1,0 +1,39 @@
+<div class="modal fade" id="{{project.title}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header custom-bg-bleue custom-home">
+                <h5 class="modal-title" id="exampleModalLabel">{{ project.title }}</h5>
+                <button type="button" class="close custom-home" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="card profile-card-5">
+                    <div class="card-img-block">
+                        <img class="card-img-top" src="{{ vich_uploader_asset(project, 'imageFile') }}" alt="project-img" style="width: 100%; height:auto;">
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">
+                            {{ project.description }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="projects-links d-flex justify-content-between">
+                    {% if project.github is not empty %}
+                        <a href="{{ project.github}}" target="_blanc" class="btn btn-outline-info mx-2">
+                            <i class="fab fa-github"></i>
+                            {{ 'project.github' | trans }}
+                        </a>
+                        <a href="{{ project.github }}/archive/master.zip" class="btn btn-outline-info">
+                            <i class="fas fa-download"></i>
+                            {{ 'project.download' | trans }}
+                        </a>
+                    {% endif %}
+                </div>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ 'modal.close' | trans }}</button>
+            </div>
+        </div>
+    </div>
+</div>
