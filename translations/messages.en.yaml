@@ -11,6 +11,13 @@ contact:
     email: Email
     message: Message
     send: Send
+    object:
+      object: Object
+      question: Question
+      note: Note
+      other: Autre
+  cv: Download my CV !
+  lm: Download my cover letter !
 home:
   home: Home
   click: Click it will knock you over!

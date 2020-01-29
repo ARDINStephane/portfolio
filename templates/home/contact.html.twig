@@ -30,7 +30,7 @@
     <div class="container">
         <div class="row justify-content-center my-5">
             <div class="">
-                <a class="btn btn-primary" data-toggle="collapse" href="#contactButton" role="button" aria-expanded="false" aria-controls="contactButton">
+                <a class="btn btn-primary custum-btn-animation" data-toggle="collapse" href="#contactButton" role="button" aria-expanded="false" aria-controls="contactButton">
                     {{ 'contact.forContact' | trans }}
                 </a>
             </div>
@@ -40,8 +40,11 @@
                 {{ form_start(form) }}
 
                 <div class="row">
-                    <div class="col">{{ form_row(form.firstname) }}</div>
+                    <div class="col">{{ form_row(form.object) }}</div>
+                </div>
+                <div class="row">
                     <div class="col">{{ form_row(form.lastname) }}</div>
+                    <div class="col">{{ form_row(form.firstname) }}</div>
                 </div>
                 <div class="row">
                     <div class="col">{{ form_row(form.phone) }}</div>
@@ -52,6 +55,12 @@
                     <button class="btn btn-primary align-items-end">{{ "contact.form.send" | trans }}</button>
                 </div>
                 {{ form_end(form) }}
+            </div>
+        </div>
+        <div class="container">
+            <div class="row d-flex justify-content-center my-5">
+                <a href="/pdf/cv_Stephane_ARDIN_2020.pdf" class="btn btn-outline-info ml-5 pr-5" download="CV_ARDIN_stephane_2020">{{ "contact.cv" | trans }}</a>
+                <a href="/pdf/LM_devoloppeur_backend_junior.pdf" class="btn btn-outline-info ml-5" download="LM_devoloppeur_backend_junior">{{ "contact.lm" | trans }}</a>
             </div>
         </div>
     </div>

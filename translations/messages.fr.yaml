@@ -11,6 +11,13 @@ contact:
     email: Mail
     message: Message
     send: Envoyer
+    object:
+      object: Objet
+      question: Question
+      note: Remarque
+      other: Autre
+  cv: Télécharger mon CV !
+  lm: Télécharger ma lettre de motivation !
 home:
   home: Accueil
   click: Clique ça va te renverser !
