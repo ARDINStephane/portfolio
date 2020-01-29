@@ -1,7 +1,11 @@
-<div xmlns="http://www.w3.org/1999/html">
-     {{ contact.firstname }} {{ contact.lastname }}
-    Message: {{ contact.message }}
-</div>
 <div>
+    <h1>Objet: {{ contact.object }}</h1>
+</div>
+<div></div>
+<div>
+    Message de : {{ contact.firstname }} {{ contact.lastname }}
+    <br>
     {{ contact.message }}
+    <br>
+    Repondre à : {{ contact.email }}
 </div>

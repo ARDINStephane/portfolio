@@ -13,3 +13,21 @@ nav a:hover{
     background: rgb(244,151,39);
     color: rgb(35,47,62);
 }
+.cutom-left-animation{
+    animation-name:left;
+    animation-duration:2s;
+    position:relative;
+}
+@keyframes left{
+    0%{left: -1000px}
+    100%{left: 0px}
+}
+.cutom-right-animation{
+    animation-name:right;
+    animation-duration:2s;
+    position:relative;
+}
+@keyframes right{
+    0%{left: 2000px}
+    100%{left: 0px}
+}

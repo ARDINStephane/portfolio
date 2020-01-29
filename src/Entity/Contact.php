@@ -8,6 +8,28 @@ class Contact
 {
     /**
      * @var string | null
+     */
+    private $object;
+
+    /**
+     * @return string|null
+     */
+    public function getObject(): ?string
+    {
+        return $this->object;
+    }
+
+    /**
+     * @param string|null $object
+     * @return Contact
+     */
+    public function setObject(?string $object): Contact
+    {
+        $this->object = $object;
+        return $this;
+    }
+    /**
+     * @var string | null
      * @Assert\NotBlank()
      * @Assert\Length(min=2, max=100)
      */

@@ -1,9 +1,9 @@
-<nav class="navbar navbar-expand-lg navbar-dark custom-bg-bleue sticky-top">
+<nav class="navbar navbar-expand-lg navbar-dark custom-bg-bleue sticky-top ">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div class="collapse navbar-collapse cutom-left-animation" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item mx-1">
                 <a class="nav-link  custom-home"
@@ -65,24 +65,26 @@
                 </div>
             </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <div class="input-group md-form form-sm form-2 pl-0">
-                <input class="form-control my-0 py-3 lime-border" type="text" placeholder="{{ 'navbar.search' | trans }}" aria-label="Search">
-                <div class="input-group-append">
-                    <button class="btn btn-outline-secondary perso-search" type="submit"><i class="fas fa-search" aria-hidden="true"></i></button>
-                </div>
-            </div>
-        </form>
+            <div class="row cutom-right-animation">
+                <form class="form-inline my-2 my-lg-0">
+                    <div class="input-group md-form form-sm form-2 pl-0">
+                        <input class="form-control my-0 py-3 lime-border" type="text" placeholder="{{ 'navbar.search' | trans }}" aria-label="Search">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary perso-search" type="submit"><i class="fas fa-search" aria-hidden="true"></i></button>
+                        </div>
+                    </div>
+                </form>
 
-        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-            <div class="navbar-nav nav-item mx-2">
-                <a class="nav-link" href={{ path('logout') }}>{{ 'security.logout' | trans }}</a>
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    <div class="navbar-nav nav-item mx-2">
+                        <a class="nav-link" href={{ path('logout') }}>{{ 'security.logout' | trans }}</a>
+                    </div>
+                {% else %}
+                    <div class="navbar-nav nav-item mx-5">
+                        <a class="nav-link" href={{ path('login') }}>{{ 'security.login' | trans }}</a>
+                    </div>
+                {% endif %}
             </div>
-        {% else %}
-            <div class="navbar-nav nav-item mx-5">
-                <a class="nav-link" href={{ path('login') }}>{{ 'security.login' | trans }}</a>
-            </div>
-        {% endif %}
-    </div>
+        </div>
 </nav>
 
