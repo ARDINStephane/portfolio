@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Project;
 use App\Form\ProjectType;
 use App\Provider\ProjectProvider;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -71,9 +72,13 @@ class ProjectController extends AbstractController
      * @Route("/project/list", name="project_list")
      * @return Response
      */
-    public function list():Response
+    public function list(PaginatorInterface $paginator, Request $request):Response
     {
-        $list = $this->projectProvider->provideAll();
+        $list = $paginator->paginate(
+            $this->projectProvider->provideAll(),
+            $request->query->getInt('page', 1),
+            3
+        );
         return $this->render('project/project_list.html.twig', [
             'projectList' => $list
         ]);

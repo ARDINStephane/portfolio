@@ -60,6 +60,11 @@ class Project
      */
     private $updatedAt;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $technologies;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -137,5 +142,20 @@ class Project
     public function getImageName(): ?string
     {
         return $this->imageName;
+    }
+
+    public function getTechnologies(): ?array
+    {
+        return json_decode($this->technologies, true);
+    }
+
+    public function setTechnologies(string $technologie): self
+    {
+        $technologies = $this->getTechnologies();
+        $technologies[] = $technologie;
+
+        $this->technologies = json_encode($technologies);
+
+        return $this;
     }
 }
