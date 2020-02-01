@@ -4,6 +4,7 @@
 namespace App\Provider;
 
 
+use App\Entity\ProjectSearch;
 use App\Repository\ProjectRepository;
 
 class ProjectProvider
@@ -25,5 +26,14 @@ class ProjectProvider
     public function provideAll(): ?array
     {
         return $this->projectRepository->findAll();
+    }
+
+    /**
+     * @param ProjectSearch $search
+     * @return array|null
+     */
+    public function searchProject(ProjectSearch $search): ?array
+    {
+        return $this->projectRepository->searchProject($search);
     }
 }

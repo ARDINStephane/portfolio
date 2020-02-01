@@ -1,3 +1,4 @@
+
 <nav class="navbar navbar-expand-lg navbar-dark custom-bg-bleue sticky-top ">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -51,17 +52,12 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="dropdown09">
                     <a class="dropdown-item {% if app.request.locale == "fr" %}active {% endif %}"
-                       href="{{ path('set_locale', {
-                        'lastRoute': app.request.attributes.get('_route'),
-                        'routeParams': app.request.attributes.get('_route_params') | json_encode,
-                        'locale': 'fr'} ) }}">
+                       href="{{ path('set_locale', {'locale': 'fr'} ) }}">
                         {{ 'navbar.french' | trans }}
                     </a>
                     <a class="dropdown-item {% if app.request.locale == "en" %}active {% endif %}"
-                       href="{{ path('set_locale', {
-                        'lastRoute': app.request.attributes.get('_route'),
-                        'routeParams': app.request.attributes.get('_route_params') | json_encode,
-                        'locale': 'en'} ) }}">{{ 'navbar.english' | trans }}</a>
+                       href="{{ path('set_locale', {'locale': 'en'} ) }}">{{ 'navbar.english' | trans }}
+                    </a>
                 </div>
             </li>
         </ul>

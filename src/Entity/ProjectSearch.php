@@ -55,6 +55,6 @@ class ProjectSearch
      */
     public function __toString(): string
     {
-        return $this->search;
+        return $this->search ?? '';
     }
 }

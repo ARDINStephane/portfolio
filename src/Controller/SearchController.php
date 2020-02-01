@@ -6,8 +6,10 @@ namespace App\Controller;
 use App\Entity\Project;
 use App\Entity\ProjectSearch;
 use App\Form\ProjectSearchType;
+use App\Provider\ProjectProvider;
 use App\Repository\ProjectRepository;
 use Knp\Component\Pager\Paginator;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -21,32 +23,38 @@ use Symfony\Component\Routing\Annotation\Route;
 class SearchController extends AbstractController
 {
     /**
-     * @var Paginator
+     * @var ProjectProvider
      */
-    private $paginator;
-    /**
-     * @var ProjectRepository
-     */
-    private $projectRepository;
+    private $projectProvider;
 
     public function __construct(
-        ProjectRepository $projectRepository
-    )
-    {
-        $this->projectRepository = $projectRepository;
+        ProjectProvider $projectProvider
+    ) {
+        $this->projectProvider = $projectProvider;
     }
 
     /**
      * @Route("/project/search/", name="project_search")
+     * @param PaginatorInterface $paginator
+     * @param Request $request
      * @return Response
      */
-    public function search(Request $request): Response
+    public function search(PaginatorInterface $paginator, Request $request): Response
     {
         $form = $this->handleForm($request);
-
-        if($form->isSubmitted() && $form->isValid()) {
+        $search = $request->query->get('search');
+//dd($request->attributes->get('_route'));
+        if($form->isSubmitted()
+            && $form->isValid()
+            || !empty($request->query->get('search'))
+        ) {
             $search = $form->getData();
-            $projects = $this->projectRepository->searchProject($search);
+
+            $projects = $paginator->paginate(
+                $this->projectProvider->searchProject($search),
+                $request->query->getInt('page', 1),
+                3
+            );
 
             return $this->render('project/project_list.html.twig', [
                 'form' => $form->createView(),
