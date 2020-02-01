@@ -49,12 +49,14 @@ project:
   edit: Editer
   delete: Supprimer
   title: Titre de mon projet
+  technologies: Technologies
   introduction: Introduction
   description: Description
   image: URL de l'image
   github: URL github
   placeholder:
     title: Mon titre
+    technologies: Ajouter une techno
     introduction: Mon introduction
     description: Description
     image: Lien de l'image

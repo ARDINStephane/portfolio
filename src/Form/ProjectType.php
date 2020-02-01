@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Project;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -34,6 +35,12 @@ class ProjectType extends AbstractType
                     'placeholder' => $this->translator->trans('project.placeholder.title')
                 ]
             ])
+            ->add('technologies', TextType::class, [
+                'label' => $this->translator->trans('project.technologies'),
+                'attr' => [
+                    'placeholder' => $this->translator->trans('project.placeholder.technologies')
+                ]
+            ])
             ->add('introduction', TextType::class, [
                 'label' => $this->translator->trans('project.introduction'),
                 'attr' => [
@@ -54,6 +61,7 @@ class ProjectType extends AbstractType
                 ]
             ])
             ->add('github', UrlType::class, [
+                'required' => false,
                 'label' => $this->translator->trans('project.github'),
                 'attr' => [
                     'placeholder' => $this->translator->trans('project.placeholder.github')

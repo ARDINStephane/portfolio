@@ -14,22 +14,19 @@ use Symfony\Component\Routing\Annotation\Route;
 class InternationalisationController extends AbstractController
 {
     /**
-     * @Route("/set/locale/{lastRoute}/{routeParams}/{locale}", name="set_locale")
-     * @param string $lastRoute
-     * @param string|null $routeParams
+     * @Route("/set/locale/{locale}", name="set_locale")
      * @param string $locale
      * @param Request $request
      * @return RedirectResponse
      */
     public function setLocale(
-        string $lastRoute,
-        ?string $routeParams,
         string $locale,
         Request $request
     ): RedirectResponse
     {
+        $lastUrl = $request->server->get('HTTP_REFERER');
         $request->getSession()->set('_locale', $locale);
-      
-        return $this->redirectToRoute($lastRoute, json_decode($routeParams, true));
+
+        return $this->redirect($lastUrl);
     }
 }
