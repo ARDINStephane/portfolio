@@ -25,7 +25,11 @@ class ProjectProvider
      */
     public function provideAll(): ?array
     {
-        return $this->projectRepository->findAll();
+        $projectList = $this->projectRepository->findAll();
+        foreach ($projectList as $project) {
+            $project->setSkills($project->getSkills());
+        }
+        return $projectList;
     }
 
     /**

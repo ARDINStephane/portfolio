@@ -91,8 +91,9 @@ class ProjectController extends AbstractController
      */
     public function show(Project $project):Response
     {
+        $skills = $project->getSkills(true);
         return $this->render('project/project_show.html.twig', [
-            'project' => $project
+            'project' => $project,
         ]);
     }
 
