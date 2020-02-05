@@ -42,6 +42,11 @@ class Project
     private $github;
 
     /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $webSite;
+
+    /**
      * @Vich\UploadableField(mapping="project_image", fileNameProperty="imageName")
      *
      * @var File
@@ -64,6 +69,21 @@ class Project
      * @ORM\Column(type="string", length=255)
      */
     private $technologies;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $skills;
+
+    /**
+     * @var array
+     */
+    private $skillsToArray;
+
+    public function __construct()
+    {
+
+    }
 
     public function getId(): ?int
     {
@@ -118,7 +138,7 @@ class Project
         return $this;
     }
 
-    public function setImageFile(?File $imageFile = null): void
+    public function setImageFile(?File $imageFile = null): self
     {
         $this->imageFile = $imageFile;
 
@@ -127,6 +147,7 @@ class Project
             // otherwise the event listeners won't be called and the file is lost
             $this->updatedAt = new \DateTimeImmutable();
         }
+        return $this;
     }
 
     public function getImageFile(): ?File
@@ -134,9 +155,10 @@ class Project
         return $this->imageFile;
     }
 
-    public function setImageName(?string $imageName): void
+    public function setImageName(?string $imageName): self
     {
         $this->imageName = $imageName;
+        return $this;
     }
 
     public function getImageName(): ?string
@@ -144,18 +166,83 @@ class Project
         return $this->imageName;
     }
 
-    public function getTechnologies(): ?array
+    public function getTechnologies(): string
     {
-        return json_decode($this->technologies, true);
+        $technologies = json_decode($this->technologies, true);
+
+        if(empty($technologies)){
+            return null;
+        }
+        return implode(', ',$technologies) ?? null;
     }
 
-    public function setTechnologies(string $technologie): self
+    public function setTechnologies(string $technologies): self
     {
-        $technologies = $this->getTechnologies();
-        $technologies[] = $technologie;
-
-        $this->technologies = json_encode($technologies);
+        if(empty($technologies)){
+            return $this;
+        }
+        $technologies = explode(", ", $technologies);
+        $this->technologies = json_encode(array_unique($technologies));
 
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getWebSite(): ?string
+    {
+        return $this->webSite;
+    }
+
+    /**
+     * @param string $webSite
+     * @return Project
+     */
+    public function setWebSite($webSite): self
+    {
+        $this->webSite = $webSite;
+        return $this;
+    }
+
+    /**
+     * @param bool $toArray
+     * @return mixed|string
+     */
+    public function getSkills(bool $toArray = false): string
+    {
+        $skills = json_decode($this->skills, true);
+        if($toArray) {
+            return $skills;
+        }
+        if(empty($skills)){
+            return null;
+        }
+
+        return implode(', ',$skills) ?? null;
+    }
+
+    /**
+     * @param mixed $skills
+     * @return Project
+     */
+    public function setSkills(string $skills):self
+    {
+        if(empty($skills)){
+            return $this;
+        }
+        $skills = explode(", ", $skills);
+        $this->skillsToArray = $skills;
+        $this->skills = json_encode(array_unique($skills));
+
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getSkillsToArray(): array
+    {
+        return $this->skillsToArray;
     }
 }

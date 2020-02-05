@@ -47,7 +47,7 @@ security:
   logout: Se déconnecter
 project:
   edit: Editer
-  delete: Supprimer
+  delete: Voulez-vous supprimer le projet
   title: Titre de mon projet
   technologies: Technologies
   introduction: Introduction
@@ -68,5 +68,9 @@ project:
   miniProject: Mini projet
   cool: C'était cool ce projet !!
   download: Telecharger
+  webSite: Site internet
+  skills: Compétences
 modal.close: Fermer
+delete: Supprimer
+
 

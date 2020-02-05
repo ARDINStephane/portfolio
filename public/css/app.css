@@ -23,3 +23,7 @@ body{
         transform: scale(1.2);
     }
 }
+
+.z-index {
+    z-index: 2;
+}

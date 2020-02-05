@@ -20,38 +20,47 @@
                         <img class="card-img-top" src="{{ vich_uploader_asset(project, 'imageFile') }}" alt="project-img" style="width: 100%; max-height: 190px">
                     </div>
                     <div class="card-body">
-                        <h5 class="card-title">
-                            {{ project.title }}
-                        </h5>
+                        <div class="row text-inline">
+                            <ul class="list-inline text-center">
+                                <li class="list-inline-item">
+                                    <h3 class="card-title">
+                                        {{ project.title }}
+                                    </h3>
+                                </li>
+                                <li class="list-inline-item">
+                                    <h5 class="card-title">
+                                        ( {{ project.technologies }} )
+                                    </h5>
+                                </li>
+                            </ul>
+                        </div>
                         <p class="card-text">
                             {{ project.introduction }}
                         </p>
-                        <div class="projects-links d-flex justify-content-between">
+                        <div class="projects-links row">
                             {% if is_granted('ROLE_ADMIN') %}
-                                <a href="{{ path("project_edit", {
-                                    'id' : project.id
-                                }) }}" class="btn btn-outline-info">
-                                    <i class="fas fa-edit"></i> {{ 'project.edit' | trans }}
-                                </a>
-                                <a href="{{ path("project_delete", {
-                                    'id' : project.id
-                                }) }}" class="btn btn-outline-info">
-                                    <i class="fas fa-trash-alt"></i> {{ 'project.delete' | trans }}
-                                </a>
-                            {% else %}
-                                <a href="{{ project.github}}" target="_blanc" class="btn btn-outline-info">
-                                    <i class="fab fa-github"></i> {{ 'project.github' | trans }}
-                                </a>
-                                <!-- Button trigger modal -->
-                                <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#{{project.title}}">
-                                <i class="fas fa-info-circle"></i>  {{ 'project.list.more' | trans }}
-                                </button>
+                                <div class="z-index">
+                                    <a href="{{ path("project_edit", {
+                                        'id' : project.id
+                                    }) }}" class="btn btn-outline-info">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                </div>
+                                <div class="z-index">
+                                    <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#deleteModal">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </button>
+                                </div>
                             {% endif %}
+                                <button type="button" class="btn btn-outline-info stretched-link" data-toggle="modal" data-target="#{{project.title}}">
+                                    <i class="fas fa-info-circle"></i>
+                                </button>
                         </div>
                     </div>
                 </div>
             </div>
                 {% include 'includes/project_modal.html.twig' %}
+                {% include 'includes/delete_validation_modal.html.twig' %}
             {% endfor %}
         </div>
         <div class="pagination my-5">

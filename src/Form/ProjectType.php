@@ -41,6 +41,12 @@ class ProjectType extends AbstractType
                     'placeholder' => $this->translator->trans('project.placeholder.technologies')
                 ]
             ])
+            ->add('skills', TextType::class, [
+                'label' => $this->translator->trans('project.skills'),
+                'attr' => [
+                    'placeholder' => $this->translator->trans('project.skills')
+                ]
+            ])
             ->add('introduction', TextType::class, [
                 'label' => $this->translator->trans('project.introduction'),
                 'attr' => [
@@ -65,6 +71,13 @@ class ProjectType extends AbstractType
                 'label' => $this->translator->trans('project.github'),
                 'attr' => [
                     'placeholder' => $this->translator->trans('project.placeholder.github')
+                ]
+            ])
+            ->add('webSite', UrlType::class, [
+                'required' => false,
+                'label' => $this->translator->trans('project.webSite'),
+                'attr' => [
+                    'placeholder' => $this->translator->trans('project.webSite')
                 ]
             ])
         ;
