@@ -20,8 +20,8 @@
                         <img class="card-img-top" src="{{ vich_uploader_asset(project, 'imageFile') }}" alt="project-img" style="width: 100%; max-height: 190px">
                     </div>
                     <div class="card-body">
-                        <div class="row text-inline">
-                            <ul class="list-inline text-center">
+                        <div class="row text-inline ml-1">
+                            <ul class="list-inline">
                                 <li class="list-inline-item">
                                     <h3 class="card-title">
                                         {{ project.title }}
@@ -37,7 +37,7 @@
                         <p class="card-text">
                             {{ project.introduction }}
                         </p>
-                        <div class="projects-links row">
+                        <div class="projects-links row mt-5 ml-1">
                             {% if is_granted('ROLE_ADMIN') %}
                                 <div class="z-index">
                                     <a href="{{ path("project_edit", {
@@ -52,7 +52,7 @@
                                     </button>
                                 </div>
                             {% endif %}
-                                <button type="button" class="btn btn-outline-info stretched-link" data-toggle="modal" data-target="#{{project.title}}">
+                                <button type="button" class="btn btn-outline-info stretched-link" data-toggle="modal" data-target="#{{project.slug}}">
                                     <i class="fas fa-info-circle"></i>
                                 </button>
                         </div>
