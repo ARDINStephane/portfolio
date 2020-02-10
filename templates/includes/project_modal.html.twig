@@ -1,4 +1,4 @@
-<div class="modal fade" id="{{project.title}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="{{project.slug}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header custom-bg-bleue custom-home">
@@ -40,7 +40,7 @@
             <div class="modal-footer">
                 <div class="projects-links d-flex justify-content-between">
                     {% if project.webSite is not empty %}
-                        <a href="{{ project.webSite}}" target="_blanc" class="btn btn-outline-info mx-2">
+                        <a href="{{ project.webSite}}" target="_blanc" class="btn btn-outline-info">
                             <i class="fab fa-github"></i>
                             {{ 'project.webSite' | trans }}
                         </a>
@@ -56,7 +56,6 @@
                         </a>
                     {% endif %}
                 </div>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ 'modal.close' | trans }}</button>
             </div>
         </div>
     </div>

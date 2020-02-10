@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Cocur\Slugify\Slugify;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\HttpFoundation\File\File;
@@ -25,6 +26,11 @@ class Project
      * @ORM\Column(type="string", length=255)
      */
     private $title;
+
+    /**
+     * @var string
+     */
+    private $slug;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -74,11 +80,6 @@ class Project
      * @ORM\Column(type="string", length=255)
      */
     private $skills;
-
-    /**
-     * @var array
-     */
-    private $skillsToArray;
 
     public function __construct()
     {
@@ -166,7 +167,7 @@ class Project
         return $this->imageName;
     }
 
-    public function getTechnologies(): string
+    public function getTechnologies(): ?string
     {
         $technologies = json_decode($this->technologies, true);
 
@@ -178,9 +179,6 @@ class Project
 
     public function setTechnologies(string $technologies): self
     {
-        if(empty($technologies)){
-            return $this;
-        }
         $technologies = explode(", ", $technologies);
         $this->technologies = json_encode(array_unique($technologies));
 
@@ -209,7 +207,7 @@ class Project
      * @param bool $toArray
      * @return mixed|string
      */
-    public function getSkills(bool $toArray = false): string
+    public function getSkills(bool $toArray = false): ?string
     {
         $skills = json_decode($this->skills, true);
         if($toArray) {
@@ -228,9 +226,6 @@ class Project
      */
     public function setSkills(string $skills):self
     {
-        if(empty($skills)){
-            return $this;
-        }
         $skills = explode(", ", $skills);
         $this->skillsToArray = $skills;
         $this->skills = json_encode(array_unique($skills));
@@ -241,8 +236,16 @@ class Project
     /**
      * @return array
      */
-    public function getSkillsToArray(): array
+    protected function getSkillsToArray(): array
     {
-        return $this->skillsToArray;
+        return $this->getSkills(true);
+    }
+
+    /**
+     * @return string
+     */
+    public function getSlug(): string
+    {
+        return (new Slugify())->slugify($this->title);
     }
 }
