@@ -81,11 +81,6 @@ class Project
      */
     private $skills;
 
-    public function __construct()
-    {
-
-    }
-
     public function getId(): ?int
     {
         return $this->id;
@@ -205,9 +200,9 @@ class Project
 
     /**
      * @param bool $toArray
-     * @return mixed|string
+     * @return null|string|array
      */
-    public function getSkills(bool $toArray = false): ?string
+    public function getSkills(bool $toArray = false)
     {
         $skills = json_decode($this->skills, true);
         if($toArray) {
@@ -236,7 +231,7 @@ class Project
     /**
      * @return array
      */
-    protected function getSkillsToArray(): array
+    public function getSkillsToArray(): array
     {
         return $this->getSkills(true);
     }

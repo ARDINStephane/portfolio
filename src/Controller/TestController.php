@@ -28,7 +28,7 @@ class TestController extends AbstractController
     public function index(): Response
     {
         return $this->render('test/test.html.twig',[
-            'yes' =>$this->yes,
+            'res' =>$this->yes,
             'cool' => $this->cool
         ]);
     }
